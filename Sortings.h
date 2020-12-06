@@ -25,4 +25,9 @@ class Sortings{
     void quickSort(double array[], int left, int right);
     int partition(double array[], int left, int right);
     void swap(double array[], int a, int b);
+
+    void insertionSort(double array[]);
+
+    void bubbleSort(double array[]);
+    void swapBubble(double *xp, double *yp);
 };

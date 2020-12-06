@@ -99,8 +99,41 @@ int Sortings::partition(double array[], int left, int right){
   return left;
 }
 
+void Sortings::insertionSort(double array[]){
+  for (int j = 1; j < numElements; ++j){
+    //store marked item
+    double temp = array[j];
+    //where to start shifitng
+    int k = j;
+
+    while (k > 0 && array[k-1] >= temp){
+      array[k] = array[k-1];
+      --k;
+    }
+    //place marked item in correct spot
+    array[k] = temp
+  }
+}
+
+void Sortings::bubbleSort(double array[]){
+  for (int i = 0; i < numElements - 1; ++i){
+    //last i elements are already in place
+    for (int j = 0; j < numElements-i-1; ++j){
+      if (array[j] > array[j+1]){
+        swapBubble(&array[j], &array[j+1]);
+      }
+    }
+  }
+}
+
 void Sortings::swap(double array[], int a, int b){
   double tempArray = array[a];
   array[a] = array[b];
   array[b] = tempArray;
+}
+
+void Sortings::swapBubble(double *xp, double *yp){
+  double temp = *xp;
+  *xp = *yp;
+  *yp = temp;
 }
