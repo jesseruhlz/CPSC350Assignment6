@@ -30,4 +30,6 @@ class Sortings{
 
     void bubbleSort(double array[]);
     void swapBubble(double *xp, double *yp);
+
+    void selectionSort(double array[]);
 };

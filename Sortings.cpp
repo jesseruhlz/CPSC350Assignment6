@@ -121,7 +121,24 @@ void Sortings::bubbleSort(double array[]){
     for (int j = 0; j < numElements-i-1; ++j){
       if (array[j] > array[j+1]){
         swapBubble(&array[j], &array[j+1]);
+        //or could implement the swap here like so
+        //int temp = array[j];
+        //array[j] = array[j+1];
+        //array[j+1] = temp;
       }
+    }
+  }
+}
+
+void Sortings::selectionSort(double array[]){
+  for (int i = 0; i < numElements - 1; ++i){
+    double minIndex;
+    minIndex = i;
+    for (int j = 0; j < numElements; ++j){
+      if (array[j] < array[minIndex]){
+        minIndex = j;
+      }
+      swapBubble(&array[minIndex], & array[i]);
     }
   }
 }
