@@ -67,7 +67,7 @@ void Sortings::scanFile(){
     selectionSortArray[i] = size;
   }
   inputFile.close();
-  //sortAll();
+  sortAll();
 }
 
 string Sortings::getFileName(){
@@ -78,7 +78,7 @@ void Sortings::quickSort(double array[], int left, int right){
   int index = partition(array, left, right);
 
   //sort left half
-  if (left < index -1){
+  if (left < index - 1){
     quickSort(array, left, index - 1);
   }
   if (right > index){
@@ -168,6 +168,7 @@ void Sortings::swapBubble(double *xp, double *yp){
 void Sortings::sortAll(){
   clock_t timeStart;
   clock_t timeEnd;
+  float calculatedTime;
 
   cout << "\n   -SORTING -\n* ------------ *\n";
 
@@ -175,4 +176,8 @@ void Sortings::sortAll(){
   timeStart = clock();
   quickSort(quickSortArray, 0, numElements -1);
   timeEnd = clock();
+
+  calculatedTime = (float(timeEnd - timeStart)/CLOCKS_PER_SEC) * 1000;
+  cout << endl;
+  cout << "Quick Sort took " << calculatedTime << "ms to sort" << numElements << " numbers." << endl;
 }
