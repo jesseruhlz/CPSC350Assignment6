@@ -179,5 +179,19 @@ void Sortings::sortAll(){
 
   calculatedTime = (float(timeEnd - timeStart)/CLOCKS_PER_SEC) * 1000;
   cout << endl;
-  cout << "Quick Sort took " << calculatedTime << "ms to sort" << numElements << " numbers." << endl;
+  cout << "Quick Sort took " << calculatedTime << " ms to sort " << numElements << " numbers." << endl;
+
+  //insertion sort
+  timeStart = clock();
+  insertionSort(insertionSortArray);
+  timeEnd = clock();
+  calculatedTime = (float(timeEnd - timeStart)/CLOCKS_PER_SEC) * 1000;
+  cout << "Insertion Sort took " << calculatedTime << " ms to sort " << numElements << " numbers." << endl;
+
+  //bubble sort
+  timeStart = clock();
+  bubbleSort(bubbleSortArray);
+  timeEnd = clock();
+  calculatedTime = (float(timeEnd - timeStart)/CLOCKS_PER_SEC) * 1000;
+  cout << "Bubble Sort took " << calculatedTime << " ms to sort " << numElements << " numbers." << endl;
 }
