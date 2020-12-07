@@ -14,6 +14,12 @@ class Sortings{
 
     //array for quick sort
     double *quickSortArray;
+    //array for insertion sort
+    double *insertionSortArray;
+    //array for bubble sort
+    double *bubbleSortArray;
+    //array for selection sort
+    double *selectionSortArray;
 
   public:
     Sortings();
@@ -21,6 +27,7 @@ class Sortings{
 
     bool setFile(string file);
     void scanFile();
+    string getFileName();
 
     void quickSort(double array[], int left, int right);
     int partition(double array[], int left, int right);
@@ -32,4 +39,7 @@ class Sortings{
     void swapBubble(double *xp, double *yp);
 
     void selectionSort(double array[]);
+
+    void sortAll();
+
 };

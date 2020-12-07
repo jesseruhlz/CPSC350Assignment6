@@ -26,7 +26,7 @@ bool Sortings::setFile(string name){
 
 void Sortings::scanFile(){
   ifstream inputFile;
-  intputFile.open(fileName.c_str());
+  inputFile.open(fileName.c_str());
 
   string numElementsString;
   string line;
@@ -45,6 +45,9 @@ void Sortings::scanFile(){
   }
 
   quickSortArray = new double[numElements];
+  insertionSortArray = new double[numElements];
+  bubbleSortArray = new double[numElements];
+  selectionSortArray = new double[numElements];
 
   //populate arrays
   for (int i = 0; i < numElements; ++i){
@@ -59,9 +62,16 @@ void Sortings::scanFile(){
       return;
     }
     quickSortArray[i] = size;
+    insertionSortArray[i] = size;
+    bubbleSortArray[i] = size;
+    selectionSortArray[i] = size;
   }
   inputFile.close();
   //sortAll();
+}
+
+string Sortings::getFileName(){
+  return fileName;
 }
 
 void Sortings::quickSort(double array[], int left, int right){
@@ -111,7 +121,7 @@ void Sortings::insertionSort(double array[]){
       --k;
     }
     //place marked item in correct spot
-    array[k] = temp
+    array[k] = temp;
   }
 }
 
@@ -129,7 +139,7 @@ void Sortings::bubbleSort(double array[]){
     }
   }
 }
-
+/*
 void Sortings::selectionSort(double array[]){
   for (int i = 0; i < numElements - 1; ++i){
     double minIndex;
@@ -142,7 +152,7 @@ void Sortings::selectionSort(double array[]){
     }
   }
 }
-
+*/
 void Sortings::swap(double array[], int a, int b){
   double tempArray = array[a];
   array[a] = array[b];
@@ -153,4 +163,16 @@ void Sortings::swapBubble(double *xp, double *yp){
   double temp = *xp;
   *xp = *yp;
   *yp = temp;
+}
+
+void Sortings::sortAll(){
+  clock_t timeStart;
+  clock_t timeEnd;
+
+  cout << "\n   -SORTING -\n* ------------ *\n";
+
+  //quick sort
+  timeStart = clock();
+  quickSort(quickSortArray, 0, numElements -1);
+  timeEnd = clock();
 }
