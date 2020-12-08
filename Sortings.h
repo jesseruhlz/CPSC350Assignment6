@@ -21,6 +21,8 @@ class Sortings{
     //array for selection sort
     double *selectionSortArray;
 
+    double *mergeSortArray;
+
   public:
     Sortings();
     ~Sortings();
@@ -39,6 +41,9 @@ class Sortings{
     void swapBubble(double *xp, double *yp);
 
     void selectionSort(double array[]);
+
+    void merge(double array[], int left, int middle, int right);
+    void mergeSort(double array[], int left, int right);
 
     void sortAll();
 

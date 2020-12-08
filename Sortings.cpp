@@ -139,12 +139,13 @@ void Sortings::bubbleSort(double array[]){
     }
   }
 }
-/*
+
 void Sortings::selectionSort(double array[]){
+  int minIndex;
   for (int i = 0; i < numElements - 1; ++i){
-    double minIndex;
+    //double minIndex;
     minIndex = i;
-    for (int j = 0; j < numElements; ++j){
+    for (int j = i + 1; j < numElements; ++j){
       if (array[j] < array[minIndex]){
         minIndex = j;
       }
@@ -152,7 +153,75 @@ void Sortings::selectionSort(double array[]){
     }
   }
 }
-*/
+
+
+void Sortings::merge(double array[], int left, int middle, int right){
+
+  cout << "merge code" << endl;
+  int n1 = middle - left + 1;
+  int n2 = right - middle;
+
+  double leftArray[n1], rightArray[n2];
+  cout << "copy data to temp arrays" << endl;
+  for (int i = 0; i < n1; ++i){
+    leftArray[i] = array[left + i];
+  }
+  for (int j = 0; j < n2; ++j){
+    rightArray[j] = array[middle + 1 + j];
+  }
+
+  int i = 0;
+  int j = 0;
+  int k = left;
+  cout << "merge temp arrays to real arrays" << endl;
+  while (i < n1 && j < n2){
+    cout << "merging arrays" << endl;
+    if (leftArray[i] <= rightArray[j]){
+      array[k] = leftArray[i];
+      i++;
+    }
+    else{
+      array[k] = rightArray[j];
+      j++;
+    }
+    k++;
+  }
+  cout << "copy remaining elements of leftArr if any" << endl;
+  while (i < n1){
+    array[k] = leftArray[i];
+    i++;
+    k++;
+  }
+  cout << "copy of remaining elements of rightArr" << endl;
+  while (j < n2){
+    array[k] = rightArray[j];
+    j++;
+    k++;
+  }
+
+}
+
+
+void Sortings::mergeSort(double array[], int left, int right){
+  cout << "mergeSort code" << endl;
+  /*
+  if(left >= right){
+    return;
+  }
+  int middle = (left + right) / 2;
+  mergeSort(array,left,middle);
+  mergeSort(array,middle+1,right);
+  merge(array,left,middle,right);
+  */
+  int middle;
+  if (left < right){
+    middle = (left + right) / 2;
+    mergeSort(array, left, middle);
+    mergeSort(array, middle + 1, right);
+    merge(array, left, middle, right);
+  }
+}
+
 void Sortings::swap(double array[], int a, int b){
   double tempArray = array[a];
   array[a] = array[b];
@@ -186,6 +255,7 @@ void Sortings::sortAll(){
   insertionSort(insertionSortArray);
   timeEnd = clock();
   calculatedTime = (float(timeEnd - timeStart)/CLOCKS_PER_SEC) * 1000;
+  cout << endl;
   cout << "Insertion Sort took " << calculatedTime << " ms to sort " << numElements << " numbers." << endl;
 
   //bubble sort
@@ -193,5 +263,24 @@ void Sortings::sortAll(){
   bubbleSort(bubbleSortArray);
   timeEnd = clock();
   calculatedTime = (float(timeEnd - timeStart)/CLOCKS_PER_SEC) * 1000;
+  cout << endl;
   cout << "Bubble Sort took " << calculatedTime << " ms to sort " << numElements << " numbers." << endl;
+
+  //selection sort
+  timeStart = clock();
+  selectionSort(selectionSortArray);
+  timeEnd = clock();
+  calculatedTime = (float(timeEnd - timeStart)/CLOCKS_PER_SEC) * 1000;
+  cout << endl;
+  cout << "Selection Sort took " << calculatedTime << " ms to sort " << numElements << " numbers." << endl;
+
+  //merge sort
+  timeStart = clock();
+  mergeSort(mergeSortArray, 0, numElements -1);
+  timeEnd = clock();
+
+  calculatedTime = (float(timeEnd - timeStart)/CLOCKS_PER_SEC) * 1000;
+  cout << endl;
+  cout << "Merge Sort took " << calculatedTime << " ms to sort " << numElements << " numbers." << endl;
+
 }
