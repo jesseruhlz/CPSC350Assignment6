@@ -156,7 +156,7 @@ void Sortings::selectionSort(double array[]){
 
 
 void Sortings::merge(double array[], int left, int middle, int right){
-
+  /*
   cout << "merge code" << endl;
   int n1 = middle - left + 1;
   int n2 = right - middle;
@@ -198,12 +198,48 @@ void Sortings::merge(double array[], int left, int middle, int right){
     j++;
     k++;
   }
+  */
 
+  double temp[(right - left) + 1];
+  int i = left;
+  int j = middle + 1;
+  int k = 0;
+  //cout << "traverse both array and each iteration add smaller of both items" << endl;
+  while (i <= middle && j <= right){
+    if (array[i] <= array[j]){
+      temp[k] = array[i];
+      k++;
+      i++;
+    }
+    else{
+      temp[k] = array[j];
+      k++;
+      j++;
+    }
+  }
+  //cout << "add elements left in the first interval" << endl;
+  while (i <= middle){
+    temp[k] = array[i];
+    k++;
+    i++;
+  }
+  //cout << "add elements left in the second interval" << endl;
+  while (j <= right){
+    temp[k] = array[j];
+    k++;
+    j++;
+  }
+  cout << "copy temp to original interval" << endl;
+  for (i = left; i < k; ++i){
+    //cout << "copying temp" << endl;
+    array[i] = temp[i];
+    //array[i + k] = temp[k];
+  }
 }
 
 
 void Sortings::mergeSort(double array[], int left, int right){
-  cout << "mergeSort code" << endl;
+  //cout << "mergeSort code" << endl;
   /*
   if(left >= right){
     return;
@@ -213,7 +249,10 @@ void Sortings::mergeSort(double array[], int left, int right){
   mergeSort(array,middle+1,right);
   merge(array,left,middle,right);
   */
-  int middle;
+  int middle = 0;
+  if (right > left){
+    return;
+  }
   if (left < right){
     middle = (left + right) / 2;
     mergeSort(array, left, middle);
